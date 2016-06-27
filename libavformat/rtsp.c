@@ -1799,15 +1799,14 @@ redirect:
         /* open the tcp connection */
         /* ARLO: :Use TLS for port 443/1999 */
         if (port == 443 || port == 1999) {
+            av_log(s, AV_LOG_INFO, "Port %d detected; using TLS", port);
             ff_url_join(tcpname, sizeof(tcpname), "tls", NULL, host, port,
                         "?timeout=%d", rt->stimeout);
         } else {
+            av_log(s, AV_LOG_INFO, "Port %d detected; using tcp", port);
             ff_url_join(tcpname, sizeof(tcpname), "tcp", NULL, host, port,
                         "?timeout=%d", rt->stimeout);
         }
-        ff_url_join(tcpname, sizeof(tcpname), lower_rtsp_proto, NULL,
-                    host, port,
-                    "?timeout=%d", rt->stimeout);
         if ((ret = ffurl_open_whitelist(&rt->rtsp_hd, tcpname, AVIO_FLAG_READ_WRITE,
                        &s->interrupt_callback, NULL, s->protocol_whitelist)) < 0) {
             err = ret;
