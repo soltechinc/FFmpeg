@@ -1147,6 +1147,8 @@ int ff_rtsp_read_reply(AVFormatContext *s, RTSPMessageHeader *reply,
     int ret, content_length, line_count = 0, request = 0;
     unsigned char *content = NULL;
 
+    av_log(s, AV_LOG_TRACE, "ff_rtsp_read_reply()\n");
+
 start:
     line_count = 0;
     request = 0;
@@ -1373,6 +1375,11 @@ int ff_rtsp_send_cmd_with_content(AVFormatContext *s,
 
 retry:
     cur_auth_type = rt->auth_state.auth_type;
+    av_log(s, AV_LOG_DEBUG, "RTSP: Sending %s to %s with header \"%s\" and content \"%s\".\n", 
+        method,
+        url,
+        header,
+        send_content);
     if ((ret = rtsp_send_cmd_with_content_async(s, method, url, header,
                                                 send_content,
                                                 send_content_length)))
