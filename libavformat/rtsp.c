@@ -1797,6 +1797,14 @@ redirect:
     } else {
         int ret;
         /* open the tcp connection */
+        /* ARLO: :Use TLS for port 443/1999 */
+        if (port == 443 || port == 1999) {
+            ff_url_join(tcpname, sizeof(tcpname), "tls", NULL, host, port,
+                        "?timeout=%d", rt->stimeout);
+        } else {
+            ff_url_join(tcpname, sizeof(tcpname), "tcp", NULL, host, port,
+                        "?timeout=%d", rt->stimeout);
+        }
         ff_url_join(tcpname, sizeof(tcpname), lower_rtsp_proto, NULL,
                     host, port,
                     "?timeout=%d", rt->stimeout);
