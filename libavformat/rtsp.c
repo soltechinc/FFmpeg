@@ -1177,6 +1177,7 @@ start:
         *q = '\0';
 
         av_log(s, AV_LOG_TRACE, "line='%s'\n", buf);
+        av_log(s, AV_LOG_INFO, "ff_rtsp_read_reply='%s'\n", buf);
 
         /* test if last line */
         if (buf[0] == '\0')

@@ -51,6 +51,8 @@ static void set_options(TLSShared *c, const char *uri)
 
     if (!c->key_file && av_find_info_tag(buf, sizeof(buf), "key", p))
         c->key_file = av_strdup(buf);
+
+    c->verify = FALSE;
 }
 
 int ff_tls_open_underlying(TLSShared *c, URLContext *parent, const char *uri, AVDictionary **options)
