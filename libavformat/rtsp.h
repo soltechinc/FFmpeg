@@ -36,8 +36,8 @@
  */
 enum RTSPLowerTransport {
     // ARLO: We have swapped UDP and TCP
-    RTSP_LOWER_TRANSPORT_UDP = 1,           /**< UDP/unicast */
-    RTSP_LOWER_TRANSPORT_TCP = 0,           /**< TCP; interleaved in RTSP */
+    RTSP_LOWER_TRANSPORT_UDP = 0,           /**< UDP/unicast */
+    RTSP_LOWER_TRANSPORT_TCP = 1,           /**< TCP; interleaved in RTSP */
     RTSP_LOWER_TRANSPORT_UDP_MULTICAST = 2, /**< UDP/multicast */
     RTSP_LOWER_TRANSPORT_NB,
     RTSP_LOWER_TRANSPORT_HTTP = 8,          /**< HTTP tunneled - not a proper
